@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>xlionjuan/renovatebot-presets"
+  ],
+  "packageRules": [
+    {
+      "description": "Update the preset validator's Renovate runtime on Wednesdays without a release cooldown.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/renovatebot/renovate"
+      ],
+      "minimumReleaseAge": null,
+      "schedule": [
+        "* * * * 3"
+      ]
+    },
+    {
+      "description": "Automerge non-major Renovate runtime updates only after the preset validation workflow passes.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/renovatebot/renovate"
+      ],
+      "matchUpdateTypes": [
+        "pin",
+        "digest",
+        "pinDigest",
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    }
+  ]
+}

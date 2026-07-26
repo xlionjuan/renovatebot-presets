@@ -1,0 +1,68 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Default dependency policy for repositories maintained by xlionjuan.",
+  "extends": [
+    "config:best-practices",
+    "customManagers:githubActionsVersions"
+  ],
+  "timezone": "Asia/Taipei",
+  "platformAutomerge": false,
+  "semanticCommits": "enabled",
+  "prConcurrentLimit": 5,
+  "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "internalChecksFilter": "strict",
+  "osvVulnerabilityAlerts": true,
+  "addLabels": [
+    "dependencies"
+  ],
+  "git-submodules": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update opt-in Git refs stored as immutable 40-character SHA variables. Git SHA and digest updates do not reliably support minimumReleaseAge, so the three-day cooldown is best effort for these updates.",
+      "managerFilePatterns": [
+        "/(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$/",
+        "/(^|/)action\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=git-refs depName=(?<depName>[^\\s]+) packageName=(?<packageName>[^\\s]+) currentValue=(?<currentValue>[^\\s]+)\\s*\\r?\\n\\s*[A-Za-z0-9_]+_SHA:\\s*(?<currentDigest>[a-f0-9]{40})"
+      ],
+      "datasourceTemplate": "git-refs",
+      "versioningTemplate": "git"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Automerge non-major trusted Actions after checks pass. Renovate normalizes both GitHub syntax (actions/checkout@...) and explicit Forgejo URLs (https://git.xlion.tw/actions/checkout@...) to packageName actions/checkout, so actions/* covers both forms.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchPackageNames": [
+        "actions/*",
+        "github/*",
+        "xlionjuan/*"
+      ],
+      "matchUpdateTypes": [
+        "pin",
+        "digest",
+        "pinDigest",
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
+      "description": "This image intentionally tracks latest and resolves and verifies one digest at workflow runtime. Renovate must not pin or otherwise update it.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/xlionjuan/fedora-createrepo-image"
+      ],
+      "enabled": false
+    }
+  ]
+}

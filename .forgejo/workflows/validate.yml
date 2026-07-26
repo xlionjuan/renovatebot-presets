@@ -6,13 +6,13 @@ on:
     paths:
       - "default.json"
       - "go.json"
-      - ".forgejo/renovate.json"
+      - "renovate.json"
       - ".forgejo/workflows/validate.yml"
   pull_request:
     paths:
       - "default.json"
       - "go.json"
-      - ".forgejo/renovate.json"
+      - "renovate.json"
       - ".forgejo/workflows/validate.yml"
 
 permissions:
@@ -34,6 +34,6 @@ jobs:
           renovate-config-validator
           --strict
           --no-global
-          .forgejo/renovate.json
+          renovate.json
           default.json
           go.json

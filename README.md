@@ -146,7 +146,7 @@ requirement to validate preset files as non-global configuration:
 renovate-config-validator \
   --strict \
   --no-global \
-  .forgejo/renovate.json \
+  renovate.json \
   default.json \
   go.json
 ```

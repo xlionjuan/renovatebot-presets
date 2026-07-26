@@ -22,7 +22,7 @@
 - `default.json` contains only policy shared across repositories.
 - `go.json` is an additive Go policy and must not extend the default preset
   itself.
-- `.forgejo/renovate.json` manages only this source repository. The GitHub
+- `renovate.json` manages only this source repository. The GitHub
   mirror must not be processed by Renovate.
 - `.forgejo/workflows/validate.yml` is the preset compatibility gate.
 - `README.md` is the owner's maintenance guide. Update it whenever behavior or
@@ -80,7 +80,7 @@ Every configuration change must pass:
 renovate-config-validator \
   --strict \
   --no-global \
-  .forgejo/renovate.json \
+  renovate.json \
   default.json \
   go.json
 ```

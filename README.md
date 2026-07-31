@@ -36,6 +36,8 @@ to tags; consumers follow the default branch of the local source or mirror.
 - Enable the beta `git-submodules` manager.
 - Support marker-based GitHub Actions `_VERSION` variables and Git ref SHA
   variables.
+- Require Dependency Dashboard approval before opening Dockerfile or
+  Containerfile `pinDigest` PRs.
 
 ### Go
 
@@ -63,6 +65,12 @@ trusted Action namespaces:
 
 Covered update types are `pin`, `digest`, `pinDigest`, `minor`, and `patch`.
 Major updates only open a PR.
+
+Docker image `pinDigest` updates extracted from `Dockerfile` and `Containerfile`
+follow a separate approval flow. Renovate lists them in the Dependency Dashboard
+and does not create a branch or PR until a maintainer selects the corresponding
+checkbox. The rule targets only the `dockerfile` manager, so it does not affect
+Docker Compose, Dev Container, or other Docker-based managers.
 
 Even when a workflow uses an explicit Forgejo URL such as
 `https://git.xlion.tw/actions/checkout@...`, Renovate normalizes its

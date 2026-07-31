@@ -55,6 +55,16 @@
       "automerge": true
     },
     {
+      "description": "Require Dependency Dashboard approval before opening Dockerfile or Containerfile image digest pinning PRs.",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "matchUpdateTypes": [
+        "pinDigest"
+      ],
+      "dependencyDashboardApproval": true
+    },
+    {
       "description": "This image intentionally tracks latest and resolves and verifies one digest at workflow runtime. Renovate must not pin or otherwise update it.",
       "matchDatasources": [
         "docker"

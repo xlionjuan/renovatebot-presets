@@ -36,6 +36,8 @@ to tags; consumers follow the default branch of the local source or mirror.
 - Enable the beta `git-submodules` manager.
 - Support marker-based GitHub Actions `_VERSION` variables and Git ref SHA
   variables.
+- Group the uv runtime selected by `astral-sh/setup-uv` with the `uv-build`
+  build backend when Renovate detects updates from the same uv release train.
 - Require Dependency Dashboard approval before opening Dockerfile or
   Containerfile `pinDigest` PRs.
 
@@ -65,6 +67,19 @@ trusted Action namespaces:
 
 Covered update types are `pin`, `digest`, `pinDigest`, `minor`, and `patch`.
 Major updates only open a PR.
+
+## uv release grouping
+
+Renovate extracts the uv runtime selected by `astral-sh/setup-uv` through the
+`github-actions` manager as `astral-sh/uv`. It separately extracts the
+`uv_build` PEP 621 build requirement through the `pep621` manager, whose PyPI
+package name is normalized to `uv-build`. The default preset gives both updates
+the `uv` group name so matching releases share one branch and PR even though
+their managers and datasources differ.
+
+This grouping does not combine normal dependency updates with Renovate's
+separate lock-file maintenance update. Renovate also retains its default major
+and non-major branch separation.
 
 Docker image `pinDigest` updates extracted from `Dockerfile` and `Containerfile`
 follow a separate approval flow. Renovate lists them in the Dependency Dashboard

@@ -57,6 +57,32 @@
       "automerge": true
     },
     {
+      "description": "Group the uv runtime selected by astral-sh/setup-uv with other uv release artifacts.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchPackageNames": [
+        "astral-sh/uv"
+      ],
+      "groupName": "uv"
+    },
+    {
+      "description": "Group the uv build backend with other uv release artifacts.",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "uv-build"
+      ],
+      "groupName": "uv"
+    },
+    {
       "description": "Require Dependency Dashboard approval before opening Dockerfile or Containerfile image digest pinning PRs.",
       "matchManagers": [
         "dockerfile"

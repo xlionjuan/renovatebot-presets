@@ -23,7 +23,7 @@ jobs:
     name: renovate-config-validator
     runs-on: ha
     container:
-      image: ghcr.io/renovatebot/renovate:44.93.5@sha256:a813dd2b59451b4fc6f3d1679dcf92af6a6f045d354301d061d18c177a6f32a2
+      image: ghcr.io/renovatebot/renovate:44.94.3@sha256:33a979fa6a9ab2730ab806c239ecbe2ff41ea03617a77042412616557100f1ed
       options: --tmpfs /tmp:exec
     steps:
       - name: Checkout

@@ -45,6 +45,7 @@
         "github/*",
         "docker/*",
         "redhat-actions/*",
+        "astral-sh/*"
         "xlionjuan/*"
       ],
       "matchUpdateTypes": [
